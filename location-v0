@@ -1,0 +1,89 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "LocationV0",
+        "description": "Example Extensible API Defintion",
+        "version": "0.0.0"
+    },
+    "host": "example",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/location-v0.notsodistantfuture.com",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/timezone": {
+            "get": {
+                "summary": "User Timezone information",
+                "responses": {
+                    "200": {
+                        "description": "User Timezone Information",
+                        "schema": {
+                            "$ref": "#/definitions/Timezone"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Timezone": {
+            "type": "object",
+            "properties": {
+                "country_code": {
+                    "type": "string",
+                    "description": "Country Code."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Timezone Name for use in libraries."
+                },
+                "abbreviation": {
+                    "type": "string",
+                    "description": "Abbreviation. Useful for user display."
+                },
+                "gmt_offset_seconds": {
+                    "type": "integer",
+                    "description": "Seconds that timezone is offset from GMT."
+                },
+                "last_updated": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "when the source data was updated."
+                },
+                "last_updated_age_seconds": {
+                    "type": "integer",
+                    "description": "Seconds since last update."
+                },
+                "localtime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Current time in Specified Timezone."
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "fields": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
