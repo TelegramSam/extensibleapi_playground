@@ -1,0 +1,92 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "PhoneLogV0",
+        "description": "Example Extensible API Defintion",
+        "version": "0.0.0"
+    },
+    "host": "example",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/phonelog-v0.notsodistantfuture.com",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/update": {
+            "get": {
+                "summary": "User Timezone information",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "type": "string",
+                        "required": true,
+                        "description": "Required for auth"
+                    },
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "type": "number",
+                        "required": true,
+                        "description": "Latitude"
+                    },
+                    {
+                        "name": "lng",
+                        "in": "query",
+                        "type": "number",
+                        "required": true,
+                        "description": "Longitude"
+                    },
+                    {
+                        "name": "time",
+                        "in": "query",
+                        "type": "string",
+                        "required": true,
+                        "description": "timestamp of location"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Timezone Information",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateResult"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "UpdateResult": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "string"
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "fields": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
